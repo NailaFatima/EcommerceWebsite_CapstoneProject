@@ -19,6 +19,7 @@ public class ProductController {
     public ProductController(@Qualifier("SelfProductServiceImpl") ProductService productService) {
         this.productService = productService;
     }
+
     @GetMapping("/{id}")
     public ResponseEntity<Product> getProductById (@PathVariable("id") Long id)
             throws ProductNotFoundException {
