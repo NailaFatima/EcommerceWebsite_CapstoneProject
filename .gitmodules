@@ -1,0 +1,3 @@
+[submodule "EmailService"]
+	path = EmailService
+	url = https://github.com/NailaFatima/EcommerceWebsite_CapstoneProject/EmailService.git
