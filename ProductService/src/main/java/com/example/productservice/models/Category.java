@@ -7,11 +7,13 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.io.Serializable;
+
 @Getter
 @Setter
 @Entity
 @NoArgsConstructor  // Add this to allow Jackson to instantiate
 @AllArgsConstructor
-public class Category extends BaseModel {
+public class Category extends BaseModel implements Serializable {
     String description;
 }

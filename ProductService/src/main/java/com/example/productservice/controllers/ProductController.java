@@ -19,7 +19,7 @@ public class ProductController {
      ProductService productService;
      TokenService tokenService;
     @Autowired
-    public ProductController(@Qualifier("SelfProductServiceImpl") ProductService productService, TokenService tokenService) {
+    public ProductController(ProductService productService, TokenService tokenService) {
         this.productService = productService;
         this.tokenService = tokenService;
     }

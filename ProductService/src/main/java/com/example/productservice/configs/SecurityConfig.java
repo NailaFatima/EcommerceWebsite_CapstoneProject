@@ -14,8 +14,8 @@ public class SecurityConfig {
         http
                 .authorizeHttpRequests(authorize -> authorize
                                 .requestMatchers("/search").permitAll() // ✅ Allow public access to search API
-                                //.requestMatchers(HttpMethod.POST,"/products").authenticated() // ✅ Allow public access to product list
-                                .requestMatchers("/products").permitAll() // ✅ Allow public access to product list
+                                .requestMatchers(HttpMethod.POST,"/products").authenticated() // ✅ Allow public access to product list
+                                //.requestMatchers("/products").permitAll() // ✅ Allow public access to product list
                                 .requestMatchers("/products/{id}").authenticated() // 🔒 Keep authentication for product details
 //                        //.authenticated()
 //                        .hasAuthority("SCOPE_ADMIN")
