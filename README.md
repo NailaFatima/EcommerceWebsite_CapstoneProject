@@ -1,4 +1,7 @@
 
+
+---
+
 # Ecommerce Website Capstone Project
 
 ## Overview
@@ -25,11 +28,21 @@ The application is structured into multiple microservices, each responsible for 
    - Each microservice is containerized using Docker, enabling consistent deployment across environments.
    - Ensures that the application runs seamlessly on different systems.
 
-4. **Spring Framework**
-   - Spring Boot is used to build RESTful web services and handle various backend functionalities.
-   - Spring Kafka is used to integrate Kafka messaging seamlessly.
+4. **Kubernetes**
+   - Kubernetes is used for container orchestration.
+   - Role:
+     - Ensures high availability and scalability of services.
+     - Manages deployment, service discovery, and load balancing of microservices.
+   - Configuration files for Kubernetes are included for deploying services as pods and managing them effectively.
 
-5. **JWT (JSON Web Tokens)**
+5. **Service Discovery**
+   - Service discovery is implemented to allow microservices to locate and communicate with each other dynamically.
+   - Spring Cloud Netflix Eureka has been used to implement service discovery.
+   - Benefits:
+     - Allows dynamic registration and discovery of services.
+     - Ensures fault tolerance and load balancing.
+
+6. **JWT (JSON Web Tokens)**
    - Used for user authentication and authorization.
    - Authentication Process:
      - Users log in with their credentials.
@@ -37,19 +50,26 @@ The application is structured into multiple microservices, each responsible for 
      - The JWT is sent to the client and must be included in subsequent requests for secure endpoints.
      - The server validates the JWT to authenticate and authorize the user.
 
-6. **AWS**
+7. **AWS**
    - AWS services are used for hosting and managing infrastructure.
    - Example Roles:
      - S3: Used for storing files and assets.
      - EC2: Instances used for deploying the application.
      - SNS (Simple Notification Service): For notifications as part of the email service.
 
-7. **MySQL**
+8. **MySQL**
    - The database used for storing application data.
    - MySQL provides a robust and scalable relational database system for managing user, product, order, and other critical data.
 
-8. **Maven**
-   - Dependency management and project build tool.
+9. **Payment Integration**
+   - A dedicated `Payment Service` microservice is included to handle payment processing.
+   - Features:
+     - Integration with third-party payment gateways (e.g., Stripe, RazorPay).
+     - Secure processing of payment transactions.
+     - Ensures proper order state management based on payment success or failure.
+
+10. **Maven**
+    - Dependency management and project build tool.
 
 ### Services Overview
 
@@ -75,6 +95,20 @@ The application is structured into multiple microservices, each responsible for 
      - Role-Based Access Control (RBAC): Users are assigned roles that determine their access level.
      - Token-Based Authentication: Secure and stateless communication.
 
+#### 3. Product Service
+   - **Purpose**: Manages product catalog and inventory.
+   - **Key Features**:
+     - CRUD operations for product management (Create, Read, Update, Delete).
+     - Inventory management to track product availability.
+     - Integration with other services to ensure seamless order and inventory updates.
+
+#### 4. Payment Service
+   - **Purpose**: Handles payment processing for orders.
+   - **Key Features**:
+     - Integration with secure third-party payment systems.
+     - Manages payment validation, refunds, and order state transitions.
+     - Kafka events used for communicating the status of payments to other services.
+
 ---
 
 ## How to Run the Project
@@ -90,7 +124,13 @@ The application is structured into multiple microservices, each responsible for 
    docker-compose up --build
    ```
 
-3. Access the services via their respective REST endpoints.
+3. Deploy services using Kubernetes:
+   - Apply the Kubernetes configuration files located in the `k8s-config` directory:
+     ```bash
+     kubectl apply -f k8s-config/
+     ```
+
+4. Access the services via their respective REST endpoints.
 
 ---
 
